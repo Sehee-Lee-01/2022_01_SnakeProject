@@ -3,6 +3,8 @@ int main()
 {
     WINDOW *win1;
     initscr();
+    keypad(stdscr, TRUE);
+
     resize_term(25, 25);
     start_color();
     init_pair(1, COLOR_WHITE, COLOR_RED);
