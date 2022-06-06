@@ -1,4 +1,5 @@
 #include <ncurses.h>
+#include <string.h>
 int main()
 {
     initscr();
@@ -13,7 +14,11 @@ int main()
     
     attron(COLOR_PAIR(2));
     border('1', '1', '1', '1', '2', '2', '2', '2');
-    mvprintw(4,4,"3444");
+	int row, col;
+	row = 4;
+	col = 4;
+	char arr[10] = "34444";
+    mvprintw(row,col,arr);
 
     attroff(COLOR_PAIR(2));
     refresh();
