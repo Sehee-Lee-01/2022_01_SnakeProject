@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Jun  6 15:00:28 2022
+# Make data base, printed on Mon Jun  6 15:25:59 2022
 
 # Variables
 
@@ -154,7 +154,6 @@ ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 GTK_MODULES = gail:atk-bridge
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
- 
 # environment
 HOME = /home/seheelee
 # environment
@@ -286,6 +285,7 @@ LANG = C
 # environment
 VSCODE_PID = 57658
 # variable set hash-table stats:
+ 
 # Load=136/1024=13%, Rehash=0, Collisions=19/161=12%
 
 # Pattern-specific Variable Values
@@ -294,9 +294,9 @@ VSCODE_PID = 57658
 
 # Directories
 
-# . (device 2050, inode 1058953): 20 files, no impossibilities.
+# . (device 2050, inode 1058953): 22 files, no impossibilities.
 
-# 20 files, no impossibilities in 1 directories.
+# 22 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -340,7 +340,7 @@ ex3: Example3.cpp
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-06 15:00:25.15094214
+#  Last modified 2022-06-06 15:24:41.189274935
 #  File has been updated.
 #  Successfully updated.
 
@@ -384,6 +384,13 @@ Stage1.cpp:
 #  Modification time never checked.
 #  File has not been updated.
 
+stg2: Stage2.cpp
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 20):
+	g++ -std=c++11 -o stg1 Stage2.cpp -lncursesw
+
 ex2: Example2.cpp
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -403,20 +410,26 @@ Helloworld.cpp:
 #  Modification time never checked.
 #  File has not been updated.
 
+# Not a target:
+Stage2.cpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 # files hash-table stats:
-# Load=16/1024=2%, Rehash=0, Collisions=0/32=0%
+# Load=18/1024=2%, Rehash=0, Collisions=0/35=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 26 / storage = 258 B / avg = 9 B
-# current buf: size = 8162 B / used = 258 B / count = 26 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 28 / storage = 274 B / avg = 9 B
+# current buf: size = 8162 B / used = 274 B / count = 28 / avg = 9 B
 
-# strcache performance: lookups = 47 / hit rate = 44%
+# strcache performance: lookups = 52 / hit rate = 46%
 # hash-table stats:
-# Load=26/8192=0%, Rehash=0, Collisions=1/47=2%
-# Finished Make data base on Mon Jun  6 15:00:28 2022
+# Load=28/8192=0%, Rehash=0, Collisions=1/52=2%
+# Finished Make data base on Mon Jun  6 15:25:59 2022
 
  
