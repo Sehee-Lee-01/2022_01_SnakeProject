@@ -17,4 +17,4 @@ stg1: Stage1.cpp
 	g++ -std=c++11 -o stg1 Stage1.cpp -lncursesw
 
 stg2: Stage2.cpp
-	g++ -std=c++11 -o stg1 Stage2.cpp -lncursesw
+	g++ -std=c++11 -o stg2 Stage2.cpp -lncursesw

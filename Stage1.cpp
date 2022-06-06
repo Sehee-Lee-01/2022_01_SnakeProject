@@ -1,4 +1,5 @@
 #include <ncurses.h>
+#include <string.h>
 int main()
 {
     initscr();
