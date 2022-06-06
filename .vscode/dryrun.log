@@ -1,0 +1,5 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/seheelee/SnakeProject-2022-01'
+g++ -std=c++11 -o hello Helloworld.cpp -lncursesw
+make: Leaving directory '/home/seheelee/SnakeProject-2022-01'
+ 
