@@ -197,74 +197,39 @@ void in_gate()
 {
     int cur_x = snake_x[0];
     int cur_y = snake_y[0];
-    if(cur_x == gate1_x && cur_y  == gate1_y)
+    if((cur_x == gate1_x && cur_y  == gate1_y)||(cur_x == gate2_x && cur_y  == gate2_y))
     {
-        cur_x = gate2_x; cur_y = gate2_y;
-// 0: up, 1: right, 2: down, 3: left
+        if(cur_x == gate1_x) {cur_x = gate2_x; cur_y = gate2_y;}
+        else {cur_x = gate1_x; cur_y = gate1_y;}
         
         switch (direction)
         {
         case 0:
-            if(map[cur_x - 1][cur_y] ==0 && cur_x - 1 > 0 ){snake_x[0] = cur_x - 1 ;snake_y[0] = gate2_y; direction = 0 ;}
-            else if (map[cur_x][cur_y + 1] ==0 && cur_y + 1 < 42){snake_x[0] = gate2_x ;snake_y[0] = cur_y + 1; direction = 1;}
-            else if (map[cur_x][cur_y - 1]==0 && cur_y - 1> 0 ){snake_x[0] = gate2_x ;snake_y[0] = cur_y - 1; direction = 3;}
-            else if (map[cur_x + 1][cur_y ] ==0 && cur_x + 1< 21){snake_x[0] = cur_x + 1 ;snake_y[0] = gate2_y; direction = 2;}
+            if(map[cur_x - 1][cur_y] ==0 && cur_x - 1 > 0 ){snake_x[0] = cur_x - 1 ;snake_y[0] = cur_y; direction = 0 ;}
+            else if (map[cur_x][cur_y + 1] ==0 && cur_y + 1 < 42){snake_x[0] = cur_x ;snake_y[0] = cur_y + 1; direction = 1;}
+            else if (map[cur_x][cur_y - 1]==0 && cur_y - 1> 0 ){snake_x[0] = cur_x ;snake_y[0] = cur_y - 1; direction = 3;}
+            else if (map[cur_x + 1][cur_y ] ==0 && cur_x + 1< 21){snake_x[0] = cur_x + 1 ;snake_y[0] = cur_y; direction = 2;}
             break;
         
         case 1:
-            if (map[cur_x][cur_y + 1] ==0 && cur_y + 1 <42){snake_x[0] = gate2_x ;snake_y[0] = cur_y + 1; direction = 1;}
-            else if (map[cur_x + 1][cur_y ] ==0 && cur_x + 1 < 21){snake_x[0] = gate2_x+1 ;snake_y[0] = gate2_y; direction = 2;}
-            else if (map[cur_x - 1][cur_y] ==0 && cur_x - 1 > 0 ){snake_x[0] = cur_x - 1 ;snake_y[0] = gate2_y; direction = 0 ;}
-            else if (map[cur_x][cur_y - 1]==0 && cur_y - 1> 0 ){snake_x[0] = gate2_x ;snake_y[0] = cur_y - 1; direction = 3;}
+            if (map[cur_x][cur_y + 1] ==0 && cur_y + 1 <42){snake_x[0] = cur_x ;snake_y[0] = cur_y + 1; direction = 1;}
+            else if (map[cur_x + 1][cur_y ] ==0 && cur_x + 1 < 21){snake_x[0] = cur_x+1 ;snake_y[0] = cur_y; direction = 2;}
+            else if (map[cur_x - 1][cur_y] ==0 && cur_x - 1 > 0 ){snake_x[0] = cur_x - 1 ;snake_y[0] = cur_y; direction = 0 ;}
+            else if (map[cur_x][cur_y - 1]==0 && cur_y - 1> 0 ){snake_x[0] = cur_x ;snake_y[0] = cur_y - 1; direction = 3;}
             break;
             
         case 2:
-            if (map[cur_x + 1][cur_y ] ==0 && cur_x + 1< 21){snake_x[0] = cur_x + 1 ;snake_y[0] = gate2_y; direction = 2;}
-            else if (map[cur_x][cur_y - 1]==0 && cur_y - 1> 0 ){snake_x[0] = gate2_x ;snake_y[0] = cur_y - 1; direction = 3;}
-            else if (map[cur_x][cur_y + 1] ==0 && cur_y + 1 < 42){snake_x[0] = gate2_x ;snake_y[0] = cur_y + 1; direction = 1;}
-            else if (map[cur_x - 1][cur_y] ==0 && cur_x - 1 > 0 ){snake_x[0] = cur_x - 1 ;snake_y[0] = gate2_y; direction = 0 ;}
+            if (map[cur_x + 1][cur_y ] ==0 && cur_x + 1< 21){snake_x[0] = cur_x + 1 ;snake_y[0] = cur_y; direction = 2;}
+            else if (map[cur_x][cur_y - 1]==0 && cur_y - 1> 0 ){snake_x[0] = cur_x ;snake_y[0] = cur_y - 1; direction = 3;}
+            else if (map[cur_x][cur_y + 1] ==0 && cur_y + 1 < 42){snake_x[0] = cur_x ;snake_y[0] = cur_y + 1; direction = 1;}
+            else if (map[cur_x - 1][cur_y] ==0 && cur_x - 1 > 0 ){snake_x[0] = cur_x - 1 ;snake_y[0] = cur_y; direction = 0 ;}
             break;
 
         case 3:
-            if (map[cur_x][cur_y - 1]==0 && cur_y - 1> 0 ){snake_x[0] = gate2_x ;snake_y[0] = cur_y - 1; direction = 3;}
-            else if (map[cur_x - 1][cur_y] ==0 && cur_x - 1 > 0 ){snake_x[0] = cur_x - 1 ;snake_y[0] = gate2_y; direction = 0 ;}
-            else if(map[cur_x + 1][cur_y ] ==0 && cur_x + 1< 21){snake_x[0] = cur_x + 1 ;snake_y[0] = gate2_y; direction = 2;}
-            else if (map[cur_x][cur_y + 1] ==0 && cur_y + 1 < 42){snake_x[0] = gate2_x ;snake_y[0] = cur_y + 1; direction = 1;}
-            break;
-        }
-    }
-    else if (cur_x == gate2_x && cur_y  == gate2_y){
-        cur_x = gate1_x; cur_y = gate1_y;
-// 0: up, 1: right, 2: down, 3: left
-        
-        switch (direction)
-        {
-        case 0:
-            if(map[cur_x - 1][cur_y] != 1 ==0 && cur_x - 1 > 0){snake_x[0] = gate1_x -1 ;snake_y[0] = gate1_y; direction = 0 ;}
-            else if (map[cur_x][cur_y + 1] ==0 && cur_y + 1 < 42){snake_x[0] = gate1_x ;snake_y[0] = gate1_y+1; direction = 1;}
-            else if (map[cur_x][cur_y - 1] ==0 && cur_y - 1){snake_x[0] = gate1_x ;snake_y[0] = gate1_y-1; direction = 3;}
-            else if (map[cur_x + 1][cur_y ] ==0 && cur_x + 1 < 21){snake_x[0] = gate1_x+1 ;snake_y[0] = gate1_y; direction = 2;}
-            break;
-        
-        case 1:
-            if (map[cur_x][cur_y + 1] ==0 && cur_y + 1 < 42){snake_x[0] = gate1_x ;snake_y[0] = gate1_y+1; direction = 1;}
-            else if (map[cur_x + 1][cur_y ] ==0 && cur_x + 1 < 21){snake_x[0] = gate1_x+1 ;snake_y[0] = gate1_y; direction = 2;}
-            else if (map[cur_x - 1][cur_y] != 1 ==0 && cur_x - 1 > 0){snake_x[0] = gate1_x -1 ;snake_y[0] = gate1_y; direction = 0 ;}
-            else if (map[cur_x][cur_y - 1] ==0 && cur_y - 1){snake_x[0] = gate1_x ;snake_y[0] = gate1_y-1; direction = 3;}
-            break;
-            
-        case 2:
-            if (map[cur_x + 1][cur_y ] ==0 && cur_x + 1 < 21){snake_x[0] = gate1_x+1 ;snake_y[0] = gate1_y; direction = 2;}
-            else if (map[cur_x][cur_y - 1] ==0 && cur_y - 1){snake_x[0] = gate1_x ;snake_y[0] = gate1_y-1; direction = 3;}
-            else if (map[cur_x][cur_y + 1] ==0 && cur_y + 1 < 42){snake_x[0] = gate1_x ;snake_y[0] = gate1_y+1; direction = 1;}
-            else if (map[cur_x - 1][cur_y] != 1 ==0 && cur_x - 1 > 0){snake_x[0] = gate1_x -1 ;snake_y[0] = gate1_y; direction = 0 ;}
-            break;
-
-        case 3:
-            if (map[cur_x][cur_y - 1] ==0 && cur_y - 1){snake_x[0] = gate1_x ;snake_y[0] = gate1_y-1; direction = 3;}
-            else if (map[cur_x - 1][cur_y] != 1 ==0 && cur_x - 1 > 0){snake_x[0] = gate1_x -1 ;snake_y[0] = gate1_y; direction = 0 ;}
-            else if (map[cur_x + 1][cur_y ] ==0 && cur_x + 1 < 21){snake_x[0] = gate1_x+1 ;snake_y[0] = gate1_y; direction = 2;}
-            else if(map[cur_x][cur_y + 1] ==0 && cur_y + 1 < 42){snake_x[0] = gate1_x ;snake_y[0] = gate1_y+1; direction = 1;}
+            if (map[cur_x][cur_y - 1]==0 && cur_y - 1> 0 ){snake_x[0] = cur_x ;snake_y[0] = cur_y - 1; direction = 3;}
+            else if (map[cur_x - 1][cur_y] ==0 && cur_x - 1 > 0 ){snake_x[0] = cur_x - 1 ;snake_y[0] = cur_y; direction = 0 ;}
+            else if(map[cur_x + 1][cur_y ] ==0 && cur_x + 1< 21){snake_x[0] = cur_x + 1 ;snake_y[0] = cur_y; direction = 2;}
+            else if (map[cur_x][cur_y + 1] ==0 && cur_y + 1 < 42){snake_x[0] = cur_x ;snake_y[0] = cur_y + 1; direction = 1;}
             break;
         }
     }
