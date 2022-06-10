@@ -1,11 +1,12 @@
 #include<ncurses.h>
 #include <unistd.h>
-#include <stdlib.h>
-#include <time.h>
 #include<fstream>
 #include<iostream>
 #include <vector>
+#include <time.h>
 
+
+#define tick 100000 
 
 using namespace std;
 // Size define
@@ -75,25 +76,37 @@ void show_snake()
 }
 int main()
 {
+    int x = 11;
+    int y = 11;
     // init snake place
     for (int i=0; i<4; i++)
     {    
-        snake_x.push_back(11); 
-        snake_y.push_back(11+i);
+        snake_x.push_back(11 + i); 
+        snake_y.push_back(11);
     }
 
+    
     initscr();
-    resize_term(21, 42);
     start_color();
-    init_pair(6, COLOR_GREEN, COLOR_GREEN); // background
-    bkgd(COLOR_PAIR(6));
 
     show_map();
     // getch();
 
     show_snake();
+
+    for(int i = 0; i < 9; i++)
+    {
+        show_map(); show_snake();
+        for(int j = 0; j < 4; j++)
+        {
+            snake_x[j]--;
+        }
+        usleep(tick);
+    }
 	getch();
 	endwin();
 
 	return 0;
 }
+
+// g++ -std=c++11 -o ex1 Example1.cpp -lncursesw
