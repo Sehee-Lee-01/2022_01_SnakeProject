@@ -1,73 +1,62 @@
-#include <iostream>
-#include <ncurses.h>
-#include <string.h>
+#include<ncurses.h>
+#include<fstream>
+#include<iostream>
+
 using namespace std;
-
-char map[21][42]; // Map
-
-// Show Map
+// Size define
+#define map_height 21
+#define map_width 42
+ifstream map_file;
+int map[map_height][map_width]; // Map
 void show_map()
 {
-    for (int i=0; i<21; i++)
+    init_pair(1, COLOR_WHITE, COLOR_WHITE); // 0: background
+    init_pair(2, COLOR_CYAN, COLOR_CYAN); // 1: wall
+    init_pair(3, COLOR_BLACK, COLOR_BLACK); // 2: Immune Wall
+    string filename = "./snakemap/snakemap4.txt";
+    map_file.open(filename);
+    string line;
+    for (int i=0; i<map_height; i++)
     {
-        for(int j=0; j<21; j++)
+        getline(map_file,line);
+        for(int j=0; j<map_width; j++)
         {
-            cin >> map[i][j];
+            map[i][j] = line.at(j) - '0'; // char to int: out of range
             // Set & Print color
             switch (map[i][j])
             {
-                case '0':
-                    attron(COLOR_PAIR(0));
-                    printw("0");
-                    attroff(COLOR_PAIR(0));
+                case 0: // background
+                    attron(COLOR_PAIR(1));
+                    mvprintw(i, j," ");
+                    attroff(COLOR_PAIR(1));                    
                     break;
-                case '1':
-                    /* code */
+                case 1: // wall
+                    attron(COLOR_PAIR(2));
+                    mvprintw(i, j," ");
+                    attroff(COLOR_PAIR(2));                    
                     break;
-                case '2':
-                    /* code */
-                    break;
-                default:
+                case 2: // Immune Wall
+                    attron(COLOR_PAIR(3));
+                    mvprintw(i, j," ");
+                    attroff(COLOR_PAIR(3));                    
                     break;
             }
         }
     }
+    map_file.close();
+    refresh();
 }
 
 int main()
 {
-    initscr(); // Curses mode start
-    resize_term(21, 42); // Size
-    start_color(); // Use color
-    keypad(stdscr, TRUE);
-    
-// Color Palette
-// 1) Map
-    init_pair(0, COLOR_WHITE, COLOR_WHITE); // 0: background
-    init_pair(1, COLOR_BLACK, COLOR_BLACK); // 1: wall
-    init_pair(2, COLOR_BLACK, COLOR_BLACK); // 2: Immune Wall
+    initscr();
+    start_color();
 
-    init_pair(3, COLOR_MAGENTA, COLOR_MAGENTA); // 3: Gate A, Gate B
-    init_pair(4, COLOR_CYAN, COLOR_CYAN); // 4: Growth Item
-    init_pair(5, COLOR_RED, COLOR_RED); // 5: Poison Item
-// 2) Snake
-    init_pair(6, COLOR_YELLOW, COLOR_YELLOW); // 6: Snake Head
-    init_pair(7, COLOR_GREEN, COLOR_GREEN); // 7: Snake body
+    show_map();
+	getch();
+	endwin();
 
-// Make & Show Map
-    show_map();    
-
-    // bkgd('0');
-    // attron(COLOR_PAIR(2));
-    // border('1', '1', '1', '1', '2', '2', '2', '2');
-    // attroff(COLOR_PAIR(2));
-    // attron(COLOR_PAIR(1));
-    // mvprintw(4,4,"3444");
-    // attroff(COLOR_PAIR(1));
-
-    refresh(); // Show screen
-    getch(); // Waiting user input
-    endwin(); // Exit Curses mode
-
-    return 0;
+	return 0;
 }
+
+// g++ -std=c++11 -o ex1 Example1.cpp -lncursesw
