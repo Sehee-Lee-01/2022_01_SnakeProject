@@ -6,17 +6,17 @@ int main()
     start_color();
     keypad(stdscr, TRUE);
 
-    init_pair(1, COLOR_WHITE, COLOR_BLUE);
-    init_pair(2, COLOR_YELLOW, COLOR_GREEN);
+    init_pair(1, COLOR_BLACK, COLOR_YELLOW);
+    init_pair(2, COLOR_BLACK, COLOR_GREEN);
 
-    bkgd('0');
+    // bkgd('0');
     
     attron(COLOR_PAIR(2));
-    border('1', '1', '1', '1', '2', '2', '2', '2');
+    border('|', '|', '-', '-', '+', '+', '+', '+');
     attroff(COLOR_PAIR(2));
 
     attron(COLOR_PAIR(1));
-    mvprintw(4,4,"3444");
+    mvprintw(4,4,"^000");
     attroff(COLOR_PAIR(1));
 
     refresh();

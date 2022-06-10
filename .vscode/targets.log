@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Jun  6 15:25:59 2022
+# Make data base, printed on Fri Jun 10 14:56:03 2022
 
 # Variables
 
@@ -47,13 +47,13 @@ CURDIR := /home/seheelee/SnakeProject-2022-01
 # makefile
 SHELL = /bin/sh
 # environment
-SNAP_DATA = /var/snap/code/97
+SNAP_DATA = /var/snap/code/98
 # environment
 GDM_LANG = ko
 # environment
-VSCODE_NLS_CONFIG = {"locale":"ko","availableLanguages":{"*":"ko"},"_languagePackId":"738ac08552cca045871a73764b8c446f.ko","_translationsConfigFile":"/home/seheelee/.config/Code/clp/738ac08552cca045871a73764b8c446f.ko/tcf.json","_cacheRoot":"/home/seheelee/.config/Code/clp/738ac08552cca045871a73764b8c446f.ko","_resolvedLanguagePackCoreLocation":"/home/seheelee/.config/Code/clp/738ac08552cca045871a73764b8c446f.ko/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5","_corruptedFile":"/home/seheelee/.config/Code/clp/738ac08552cca045871a73764b8c446f.ko/corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"ko","availableLanguages":{"*":"ko"},"_languagePackId":"738ac08552cca045871a73764b8c446f.ko","_translationsConfigFile":"/home/seheelee/.config/Code/clp/738ac08552cca045871a73764b8c446f.ko/tcf.json","_cacheRoot":"/home/seheelee/.config/Code/clp/738ac08552cca045871a73764b8c446f.ko","_resolvedLanguagePackCoreLocation":"/home/seheelee/.config/Code/clp/738ac08552cca045871a73764b8c446f.ko/4af164ea3a06f701fe3e89a2bcbb421d2026b68f","_corruptedFile":"/home/seheelee/.config/Code/clp/738ac08552cca045871a73764b8c446f.ko/corrupted.info","_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 9:90483
+JOURNAL_STREAM = 9:50273
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -77,9 +77,9 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-_ = /snap/code/97/usr/share/code/code
+_ = /snap/code/98/usr/share/code/code
 # environment
-MANAGERPID = 2133
+MANAGERPID = 1563
 # environment
 CLUTTER_IM_MODULE = fcitx
 # environment
@@ -91,7 +91,7 @@ VSCODE_CWD = /home/seheelee
 # environment
 XDG_SESSION_PATH = /org/freedesktop/DisplayManager/Session0
 # environment
-GSETTINGS_SCHEMA_DIR = /snap/code/97/usr/share/glib-2.0/schemas
+GSETTINGS_SCHEMA_DIR = /snap/code/98/usr/share/glib-2.0/schemas
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
@@ -99,15 +99,15 @@ PATH = /home/seheelee/.local/bin:/home/seheelee/.local/bin:/usr/local/sbin:/usr/
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/seheelee-ThinkPad-T580:@/tmp/.ICE-unix/2377,unix/seheelee-ThinkPad-T580:/tmp/.ICE-unix/2377
+SESSION_MANAGER = local/seheelee-ThinkPad-T580:@/tmp/.ICE-unix/1757,unix/seheelee-ThinkPad-T580:/tmp/.ICE-unix/1757
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
 GDK_PIXBUF_MODULE_FILE = /home/seheelee/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
-SNAP = /snap/code/97
+SNAP = /snap/code/98
 # environment
-SNAP_VERSION = c3511e6c
+SNAP_VERSION = 4af164ea
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
@@ -117,9 +117,9 @@ DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = b78677f73c44490a8fac1ceed541f6f3
+INVOCATION_ID = b34574ebd0924ce5b00eb3e0adb89ec2
 # environment
-GDK_PIXBUF_MODULEDIR = /snap/code/97/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+GDK_PIXBUF_MODULEDIR = /snap/code/98/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -131,7 +131,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 57605
+GIO_LAUNCHED_DESKTOP_FILE_PID = 3622
 # automatic
 %F = $(notdir $%)
 # environment
@@ -147,7 +147,7 @@ PWD = /home/seheelee/SnakeProject-2022-01
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 2280
+SSH_AGENT_PID = 1687
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -161,7 +161,7 @@ LESSCLOSE = /usr/bin/lesspipe %s %s
 # environment
 VSCODE_CLI = 1
 # environment
-VSCODE_CODE_CACHE_PATH = /home/seheelee/.config/Code/CachedData/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5
+VSCODE_CODE_CACHE_PATH = /home/seheelee/.config/Code/CachedData/4af164ea3a06f701fe3e89a2bcbb421d2026b68f
 # environment
 LOGNAME = seheelee
 # environment
@@ -193,19 +193,19 @@ MAKECMDGOALS := all
 # environment
 QT_IM_MODULE = fcitx
 # environment
-SNAP_USER_DATA = /home/seheelee/snap/code/97
+SNAP_USER_DATA = /home/seheelee/snap/code/98
 # environment
 SHLVL = 0
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-77556827-7b79-417d-bcee-451cec5f34e3.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-cbeb1823-7ee0-4d0c-9f5e-aab06ad6e2e4.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
 USER = seheelee
 # environment
-SNAP_REVISION = 97
+SNAP_REVISION = 98
 # environment
 LC_MONETARY = ko_KR.UTF-8
 # makefile
@@ -227,7 +227,7 @@ LANGUAGE = ko:en
 # environment
 XDG_SEAT_PATH = /org/freedesktop/DisplayManager/Seat0
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-dd582bf8-1.67.2-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-dd582bf8-1.68.0-main.sock
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # makefile
@@ -283,7 +283,7 @@ LC_ADDRESS = ko_KR.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 57658
+VSCODE_PID = 3758
 # variable set hash-table stats:
  
 # Load=136/1024=13%, Rehash=0, Collisions=19/161=12%
@@ -294,9 +294,9 @@ VSCODE_PID = 57658
 
 # Directories
 
-# . (device 2050, inode 1058953): 22 files, no impossibilities.
+# . (device 2050, inode 1058953): 19 files, no impossibilities.
 
-# 22 files, no impossibilities in 1 directories.
+# 19 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -340,7 +340,7 @@ ex3: Example3.cpp
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-06 15:24:41.189274935
+#  Last modified 2022-06-06 15:30:18.851388387
 #  File has been updated.
 #  Successfully updated.
 
@@ -389,7 +389,7 @@ stg2: Stage2.cpp
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 20):
-	g++ -std=c++11 -o stg1 Stage2.cpp -lncursesw
+	g++ -std=c++11 -o stg2 Stage2.cpp -lncursesw
 
 ex2: Example2.cpp
 #  Implicit rule search has not been done.
@@ -424,12 +424,12 @@ Stage2.cpp:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 28 / storage = 274 B / avg = 9 B
-# current buf: size = 8162 B / used = 274 B / count = 28 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 29 / storage = 289 B / avg = 9 B
+# current buf: size = 8162 B / used = 289 B / count = 29 / avg = 9 B
 
-# strcache performance: lookups = 52 / hit rate = 46%
+# strcache performance: lookups = 49 / hit rate = 40%
 # hash-table stats:
-# Load=28/8192=0%, Rehash=0, Collisions=1/52=2%
-# Finished Make data base on Mon Jun  6 15:25:59 2022
+# Load=29/8192=0%, Rehash=0, Collisions=1/49=2%
+# Finished Make data base on Fri Jun 10 14:56:03 2022
 
  
