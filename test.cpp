@@ -33,11 +33,16 @@ int gate1_x, gate1_y, gate2_x, gate2_y;
 int item_timer = 0;
 int gate_timer = 0;
 
+// score
+int get_growth, get_poison, get_gate, max_length = 4, play_time;
+int goal_growth = 3, goal_poison = 1, goal_gate = 2, goal_length = 7;
+
+
 void show_map()
 {
-    init_pair(1, COLOR_BLACK, COLOR_WHITE); // 0: background
-    init_pair(2, COLOR_BLACK, COLOR_CYAN); // 1: wall
-    init_pair(3, COLOR_WHITE, COLOR_BLACK); // 2: Immune Wall
+    init_pair(1, COLOR_WHITE, COLOR_WHITE); // 0: background
+    init_pair(2, COLOR_CYAN, COLOR_CYAN); // 1: wall
+    init_pair(3, COLOR_BLACK, COLOR_BLACK); // 2: Immune Wall
     string filename = "./snakemap/snakemap1.txt";
     map_file.open(filename);
     string line;
@@ -96,18 +101,17 @@ bool move()
     int a =0;
     int key ;
     
-    // while(!fail)
-    // {   
         show_map(); show_snake(); get_item(); show_gate(); in_gate();
 
         cur_x = snake_x[0];
         cur_y = snake_y[0];
         
-        if(map[cur_x][cur_y ] == 1)
-            return true;
+        if((map[cur_x][cur_y ] == 1) || (snake_x.size() < 3)) {return true;}
 
     // 0: up, 1: right, 2: down, 3: left
         if (cur_x == growth_x && cur_y == growth_y){
+            max_length++;
+            get_growth++;
             int lastx = snake_x[-1];
             int lasty = snake_y[-1];
             if(direction == 0){snake_x.push_back(++lastx); snake_y.push_back(lasty);}
@@ -117,6 +121,7 @@ bool move()
         }
         else if (cur_x == poison_x && cur_y == poison_y)
         {
+            get_poison++;
             snake_x.pop_back();snake_y.pop_back();
         }
 
@@ -157,14 +162,9 @@ bool move()
 
             cur_y = y; cur_x = x;
         }
-        
         usleep(tick*2);
-    // }
 }
 
-// void check(){
-//     map[snake_x[0]][snake_y[0]] == 1;
-// }
 void get_item()
 {   
     init_pair(6, COLOR_RED, COLOR_RED); // poision
@@ -199,6 +199,7 @@ void in_gate()
     int cur_y = snake_y[0];
     if((cur_x == gate1_x && cur_y  == gate1_y)||(cur_x == gate2_x && cur_y  == gate2_y))
     {
+        get_gate++;
         if(cur_x == gate1_x) {cur_x = gate2_x; cur_y = gate2_y;}
         else {cur_x = gate1_x; cur_y = gate1_y;}
         
@@ -210,7 +211,6 @@ void in_gate()
             else if (map[cur_x][cur_y - 1]==0 && cur_y - 1> 0 ){snake_x[0] = cur_x ;snake_y[0] = cur_y - 1; direction = 3;}
             else if (map[cur_x + 1][cur_y ] ==0 && cur_x + 1< 21){snake_x[0] = cur_x + 1 ;snake_y[0] = cur_y; direction = 2;}
             break;
-        
         case 1:
             if (map[cur_x][cur_y + 1] ==0 && cur_y + 1 <42){snake_x[0] = cur_x ;snake_y[0] = cur_y + 1; direction = 1;}
             else if (map[cur_x + 1][cur_y ] ==0 && cur_x + 1 < 21){snake_x[0] = cur_x+1 ;snake_y[0] = cur_y; direction = 2;}
@@ -251,13 +251,8 @@ void show_gate()
             while(gate1_x == gate1_y && gate1_x == gate2_y);
         }
         while
-        (
-         (gate1_x == 20 && gate1_y == 41) || (gate2_x == 20 && gate2_y == 41) || //(20,41)
-         (gate1_x == 20 && gate1_y == 0) || (gate2_x == 20 && gate2_y == 0) || //(20,0)
-         (gate1_x == 0 && gate1_y == 41) || (gate2_x == 0 && gate2_y == 41) || //(0,41) 
-         (gate1_x == 0 && gate1_y == 0) || (gate2_x == 0 && gate2_y == 0) //(0,0)
-        ); // when value = 2 position
-        gate_timer = 70;
+        (map[gate1_x][gate1_y] ==2 || map[gate2_x][gate2_y] ==2); // when value = 2 position
+        gate_timer = 50;
     }
     else {gate_timer--;}
     
@@ -270,6 +265,9 @@ void show_gate()
 
 int main()
 {
+    WINDOW *score_board;
+    WINDOW *goal_board;
+    
     int init_x = 11;
     int init_y = 11;
     // init snake place
@@ -280,21 +278,67 @@ int main()
     }
 
     initscr();
+    resize_term(100, 100);
     start_color();
     nodelay(stdscr, true);
     noecho();
     cbreak();
     keypad(stdscr, TRUE);
     curs_set(0);
-    
+
     // move snake 
-   while(!fail){
-    fail = move();
+   while(!fail)
+   {
+        fail = move();
+
+        init_pair(9, COLOR_BLACK, COLOR_WHITE);
+
+        score_board = newwin(10, 20, 0, 43);
+        goal_board = newwin(10, 20, 11, 43);
+        wbkgd(score_board, COLOR_PAIR(9));
+        wbkgd(goal_board, COLOR_PAIR(9));
+        wattron(score_board, COLOR_PAIR(9));
+        mvwprintw(score_board, 1, 1, "Score board");
+        mvwprintw(score_board, 2, 1, "B: ");
+        wprintw(score_board, "current_size");
+        wprintw(score_board, "/");
+        wprintw(score_board, "max_length");
+        mvwprintw(score_board, 3, 1, "+: ");
+        wprintw(score_board, "get_growth");
+        mvwprintw(score_board, 4, 1, "-: ");
+        wprintw(score_board, "get_poison");
+        mvwprintw(score_board, 5, 1, "G: ");
+        wprintw(score_board, "get_gate");
+        wborder(score_board, '@','@','@','@','@','@','@','@');
+        wattroff(score_board, COLOR_PAIR(9));
+        wrefresh(score_board);
+
+        wattron(goal_board, COLOR_PAIR(9));
+        mvwprintw(goal_board, 1, 1, "Mission");
+        mvwprintw(goal_board, 2, 1, "B: ");
+        wprintw(goal_board, "7");
+        if (max_length < goal_length) {wprintw(goal_board, " ( )");} else {wprintw(goal_board, " (V)");}
+        mvwprintw(goal_board, 3, 1, "+: ");
+        wprintw(goal_board, "3");
+        if (get_growth < goal_growth) {wprintw(goal_board, " ( )");} else {wprintw(goal_board, " (V)");}
+        mvwprintw(goal_board, 4, 1, "-: ");
+        wprintw(goal_board, "1");
+        if (get_poison > goal_poison) {wprintw(goal_board, " ( )");} else {wprintw(goal_board, " (V)");}
+        mvwprintw(goal_board, 5, 1, "G: ");
+        wprintw(goal_board, "2");
+        if (get_gate < goal_gate) {wprintw(goal_board, " ( )");} else {wprintw(goal_board, " (V)");}
+        wborder(goal_board, '@','@','@','@','@','@','@','@');
+        wattroff(goal_board, COLOR_PAIR(9));
+        wrefresh(goal_board);
+
+        if ((max_length >= goal_length) && (get_growth >= goal_growth) && (get_poison <= goal_poison) && (get_gate >= goal_gate) ) {break;}
     }
-    
-    clear();
+
     getch();
-	getch();
+    clear();
+    if (fail){printw("Failed!");}
+    else{printw("Successed!");}
+    getch();
 	endwin();
 
 	return 0;
