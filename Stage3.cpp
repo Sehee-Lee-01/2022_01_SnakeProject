@@ -110,6 +110,7 @@ void move()
         else if (cur_x == poison_x && cur_y == poison_y)
         {
             snake_x.pop_back();snake_y.pop_back();
+            if(snake_x.size()<3) {fail = true;}
         }
 
         if(direction == 0){snake_x[0]--;}
