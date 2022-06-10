@@ -1,22 +1,26 @@
 #include<ncurses.h>
 #include <unistd.h>
-#include <stdlib.h>
-#include <time.h>
 #include<fstream>
 #include<iostream>
 #include <vector>
+#include <time.h>
 
+
+#define tick 100000 
 
 using namespace std;
 // Size define
 #define map_height 21
 #define map_width 42
+
+bool fail = false; // game over, init = false
+
 ifstream map_file;
 int map[map_height][map_width]; // Map
 //snake
 vector<int> snake_x;
 vector<int> snake_y; 
-
+int direction = 0; // 0: up, 1: right, 2: down, 3: left
 void show_map()
 {
     init_pair(1, COLOR_WHITE, COLOR_WHITE); // 0: background
@@ -62,6 +66,7 @@ void show_snake()
     // print head
     attron(COLOR_PAIR(4));
     mvprintw(snake_x[0], snake_y[0]," ");
+    
     attroff(COLOR_PAIR(4));
  
     //print body 
@@ -73,25 +78,80 @@ void show_snake()
     }
     refresh();
 }
+
+void move()
+{
+    int a =0;
+    int key ;
+    
+    while(!fail)
+    {
+        show_map(); show_snake();
+
+        int cur_x = snake_x[0];
+        int cur_y = snake_y[0];
+
+        if(direction == 0){snake_x[0]--;}
+        else if(direction == 1){snake_y[0]++;}
+        else if(direction == 2){snake_x[0]++;}
+        else if(direction == 3){snake_y[0]--;}
+
+
+        key = getch();
+// 0: up, 1: right, 2: down, 3: left
+        switch(key){    
+			case KEY_RIGHT : // 오른쪽
+                if (direction == 3) {fail = true;}// left
+                else {direction = 1;}
+			    break;
+			case KEY_LEFT : // 왼쪽
+                if(direction == 1){fail = true;} // right
+                else {direction = 3;}// up
+                break;
+            case KEY_DOWN : // 아래 
+                if(direction == 0){fail = true;} // up
+                else {direction = 2;}
+                break;
+            case KEY_UP : //위
+            if (direction == 2) {fail = true;}// left
+                else {direction = 0;}
+			    break;
+		}
+
+        for(int i = 1; i <= snake_y.size(); i++){
+            
+            int y =  snake_y[i];
+            int x =  snake_x[i];
+            
+            snake_y[i] = cur_y;
+            snake_x[i] = cur_x;
+
+            cur_y = y; cur_x = x;
+        }
+
+        usleep(tick*3);
+    }
+}
 int main()
 {
+    int init_x = 11;
+    int init_y = 11;
     // init snake place
     for (int i=0; i<4; i++)
     {    
-        snake_x.push_back(11); 
-        snake_y.push_back(11+i);
+        snake_x.push_back(init_x + i); 
+        snake_y.push_back(init_y);
     }
 
     initscr();
-    resize_term(21, 42);
     start_color();
-    init_pair(6, COLOR_GREEN, COLOR_GREEN); // background
-    bkgd(COLOR_PAIR(6));
-
-    show_map();
-    // getch();
-
-    show_snake();
+    nodelay(stdscr, true);
+    noecho();
+    cbreak();
+    keypad(stdscr, TRUE);
+    // move snake 
+    move();
+    
 	getch();
 	endwin();
 
