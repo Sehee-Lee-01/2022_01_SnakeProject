@@ -205,5 +205,3 @@ int main()
 
 	return 0;
 }
-
-// g++ -std=c++11 -o ex1 Example1.cpp -lncursesw
