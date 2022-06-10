@@ -12,7 +12,8 @@ void show_map()
     {
         for(int j=0; j<21; j++)
             cin >> map[i][j];
-            // set color
+            // Set & Print color
+            // test
     }
 }
 
