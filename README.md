@@ -7,3 +7,6 @@ for Snake Game
 3. main
    1. stage(map type) -> input number ->end
    2. map
+
+
+cant go my body..???

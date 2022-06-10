@@ -96,15 +96,13 @@ bool move()
     int a =0;
     int key ;
     
-    // while(!fail)
-    // {   
         show_map(); show_snake(); get_item(); show_gate(); in_gate();
 
         cur_x = snake_x[0];
         cur_y = snake_y[0];
         
-        if((map[cur_x][cur_y ] == 1) || (snake_x.size() < 3)) {return true;}
-
+        if(map[cur_x][cur_y ] == 1)
+            return true;
 
     // 0: up, 1: right, 2: down, 3: left
         if (cur_x == growth_x && cur_y == growth_y){
@@ -159,12 +157,8 @@ bool move()
         }
         
         usleep(tick*2);
-    // }
 }
 
-// void check(){
-//     map[snake_x[0]][snake_y[0]] == 1;
-// }
 void get_item()
 {   
     init_pair(6, COLOR_RED, COLOR_RED); // poision
@@ -251,13 +245,8 @@ void show_gate()
             while(gate1_x == gate1_y && gate1_x == gate2_y);
         }
         while
-        (
-         (gate1_x == 20 && gate1_y == 41) || (gate2_x == 20 && gate2_y == 41) || //(20,41)
-         (gate1_x == 20 && gate1_y == 0) || (gate2_x == 20 && gate2_y == 0) || //(20,0)
-         (gate1_x == 0 && gate1_y == 41) || (gate2_x == 0 && gate2_y == 41) || //(0,41) 
-         (gate1_x == 0 && gate1_y == 0) || (gate2_x == 0 && gate2_y == 0) //(0,0)
-        ); // when value = 2 position
-        gate_timer = 70;
+        (map[gate1_x][gate1_y] ==2 || map[gate2_x][gate2_y] ==2); // when value = 2 position
+        gate_timer = 50;
     }
     else {gate_timer--;}
     
