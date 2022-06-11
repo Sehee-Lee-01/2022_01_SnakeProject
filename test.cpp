@@ -163,6 +163,8 @@ bool move()
             cur_y = y; cur_x = x;
         }
         usleep(tick*2);
+
+    return false;
 }
 
 void get_item()
@@ -336,10 +338,10 @@ int main()
 
     getch();
     clear();
-    if (fail){printw("Failed!");}
-    else{printw("Successed!");}
     getch();
 	endwin();
 
+    if (fail){cout << "\n\nFailed!\n\n";}
+    else{cout << "\n\nSuccessed!\n\n";}
 	return 0;
 }
