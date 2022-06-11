@@ -302,33 +302,23 @@ int main()
         wbkgd(goal_board, COLOR_PAIR(9));
         wattron(score_board, COLOR_PAIR(9));
         mvwprintw(score_board, 1, 1, "Score board");
-        mvwprintw(score_board, 2, 1, "B: ");
-        wprintw(score_board, "current_size");
-        wprintw(score_board, "/");
-        wprintw(score_board, "max_length");
-        mvwprintw(score_board, 3, 1, "+: ");
-        wprintw(score_board, "get_growth");
-        mvwprintw(score_board, 4, 1, "-: ");
-        wprintw(score_board, "get_poison");
-        mvwprintw(score_board, 5, 1, "G: ");
-        wprintw(score_board, "get_gate");
+        mvwprintw(score_board, 2, 1, "B: %d / %d", snake_x.size(), max_length);
+        mvwprintw(score_board, 3, 1, "+: %d", get_growth);
+        mvwprintw(score_board, 4, 1, "-: %d", get_poison);
+        mvwprintw(score_board, 5, 1, "G: %d", get_gate);
         wborder(score_board, '@','@','@','@','@','@','@','@');
         wattroff(score_board, COLOR_PAIR(9));
         wrefresh(score_board);
 
         wattron(goal_board, COLOR_PAIR(9));
         mvwprintw(goal_board, 1, 1, "Mission");
-        mvwprintw(goal_board, 2, 1, "B: ");
-        wprintw(goal_board, "7");
+        mvwprintw(goal_board, 2, 1, "B: %d", goal_length);
         if (max_length < goal_length) {wprintw(goal_board, " ( )");} else {wprintw(goal_board, " (V)");}
-        mvwprintw(goal_board, 3, 1, "+: ");
-        wprintw(goal_board, "3");
+        mvwprintw(goal_board, 3, 1, "+: %d", goal_growth);
         if (get_growth < goal_growth) {wprintw(goal_board, " ( )");} else {wprintw(goal_board, " (V)");}
-        mvwprintw(goal_board, 4, 1, "-: ");
-        wprintw(goal_board, "1");
+        mvwprintw(goal_board, 4, 1, "-: %d", goal_poison);
         if (get_poison > goal_poison) {wprintw(goal_board, " ( )");} else {wprintw(goal_board, " (V)");}
-        mvwprintw(goal_board, 5, 1, "G: ");
-        wprintw(goal_board, "2");
+        mvwprintw(goal_board, 5, 1, "G: %d", goal_gate);
         if (get_gate < goal_gate) {wprintw(goal_board, " ( )");} else {wprintw(goal_board, " (V)");}
         wborder(goal_board, '@','@','@','@','@','@','@','@');
         wattroff(goal_board, COLOR_PAIR(9));
