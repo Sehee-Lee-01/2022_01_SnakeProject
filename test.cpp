@@ -34,9 +34,9 @@ int item_timer = 0;
 int gate_timer = 0;
 
 // score
-int get_growth, get_poison, get_gate, max_length = 4, play_time;
+int get_growth, get_poison, get_gate, max_length = 4;
 int goal_growth = 3, goal_poison = 1, goal_gate = 2, goal_length = 7;
-
+float play_time;
 
 void show_map()
 {
@@ -291,6 +291,7 @@ int main()
     // move snake 
    while(!fail)
    {
+        play_time += 0.1;
         fail = move();
 
         init_pair(9, COLOR_BLACK, COLOR_WHITE);
@@ -341,7 +342,7 @@ int main()
     getch();
 	endwin();
 
-    if (fail){cout << "\n\nFailed!\n\n";}
-    else{cout << "\n\nSuccessed!\n\n";}
+    if (fail){cout << "\n\nFailed!\nPlay time: "<< play_time <<" sec\n\n";}
+    else{cout << "\n\nSuccessed!\nPlay time: "<< play_time <<" sec\n\n";}
 	return 0;
 }
