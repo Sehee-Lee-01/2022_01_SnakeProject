@@ -1,4 +1,6 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -6,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Jun 11 23:22:18 2022
+# Make data base, printed on Sun Jun 12 01:16:40 2022
 
 # Variables
 
@@ -129,7 +131,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 11124
+GIO_LAUNCHED_DESKTOP_FILE_PID = 16592
 # automatic
 %F = $(notdir $%)
 # environment
@@ -197,7 +199,7 @@ SHLVL = 0
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-073360dc-f2a6-4ec1-b282-6970df49cddc.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-5a0a6a14-1ed6-4323-a2e4-10b3a8bf9452.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -281,11 +283,8 @@ LC_ADDRESS = ko_KR.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 11175
+VSCODE_PID = 16685
 # variable set hash-table stats:
- 
-make: *** No rule to make target 'all'.  Stop.
-
 # Load=136/1024=13%, Rehash=0, Collisions=19/161=12%
 
 # Pattern-specific Variable Values
@@ -294,9 +293,10 @@ make: *** No rule to make target 'all'.  Stop.
 
 # Directories
 
-# . (device 2050, inode 1058953): 15 files, no impossibilities.
+ 
+# . (device 2050, inode 1058953): 16 files, no impossibilities.
 
-# 15 files, no impossibilities in 1 directories.
+# 16 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -328,6 +328,7 @@ stg3: Stage3.cpp
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
+ 
 #  Last modified 2022-06-11 02:27:17.286998248
 #  File has been updated.
 #  Successfully updated.
@@ -419,9 +420,9 @@ stg4: Stage4.cpp
 # strcache buffers: 1 (0) / strings = 26 / storage = 220 B / avg = 8 B
 # current buf: size = 8162 B / used = 220 B / count = 26 / avg = 8 B
 
-# strcache performance: lookups = 42 / hit rate = 38%
+# strcache performance: lookups = 43 / hit rate = 39%
 # hash-table stats:
-# Load=26/8192=0%, Rehash=0, Collisions=1/42=2%
-# Finished Make data base on Sat Jun 11 23:22:18 2022
+# Load=26/8192=0%, Rehash=0, Collisions=1/43=2%
+# Finished Make data base on Sun Jun 12 01:16:40 2022
 
  
