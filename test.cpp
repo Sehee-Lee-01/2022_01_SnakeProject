@@ -6,7 +6,7 @@
 #include <time.h>
 
 
-#define tick 100000 
+#define tick 100000 //0.1sec
 
 using namespace std;
 // Size define
@@ -14,7 +14,7 @@ using namespace std;
 #define map_width 42
 
 bool fail = false; // game over, init = false
-int stage = 3;
+int stage = 1;
 // ifstream map_file;
 int map[map_height][map_width]; // Map
 //snake
@@ -286,8 +286,9 @@ int main()
     cbreak();
     keypad(stdscr, TRUE);
     curs_set(0);
+for(; stage< 5; stage++)
+{    
 
-    // move snake 
    while(!fail)
    {
         play_time += 0.1;
@@ -325,8 +326,8 @@ int main()
 
         if ((max_length >= goal_length) && (get_growth >= goal_growth) && (get_poison <= goal_poison) && (get_gate >= goal_gate) ) {break;}
     }
-
-    getch();
+    // need initialize environment
+}
     clear();
     getch();
 	endwin();
