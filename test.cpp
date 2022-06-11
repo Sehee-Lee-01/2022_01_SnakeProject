@@ -34,9 +34,9 @@ int item_timer = 0;
 int gate_timer = 0;
 
 // score
-int get_growth, get_poison, get_gate, max_length = 4, play_time;
+int get_growth, get_poison, get_gate, max_length = 4;
 int goal_growth = 3, goal_poison = 1, goal_gate = 2, goal_length = 7;
-
+double play_time = 0.0;
 
 void show_map()
 {
@@ -165,6 +165,7 @@ bool move()
         usleep(tick*2);
 
     return false;
+
 }
 
 void get_item()
@@ -201,7 +202,7 @@ void in_gate()
     int cur_y = snake_y[0];
     if((cur_x == gate1_x && cur_y  == gate1_y)||(cur_x == gate2_x && cur_y  == gate2_y))
     {
-        get_gate++;
+        get_gate+=0.1;
         if(cur_x == gate1_x) {cur_x = gate2_x; cur_y = gate2_y;}
         else {cur_x = gate1_x; cur_y = gate1_y;}
         
@@ -291,6 +292,7 @@ int main()
     // move snake 
    while(!fail)
    {
+        play_time += 0.1;
         fail = move();
 
         init_pair(9, COLOR_BLACK, COLOR_WHITE);
@@ -341,7 +343,7 @@ int main()
     getch();
 	endwin();
 
-    if (fail){cout << "\n\nFailed!\n\n";}
-    else{cout << "\n\nSuccessed!\n\n";}
+    if (fail){cout << "\n\nFailed!\nPlay time: " << play_time <<" sec\n\n";}
+    else{cout << "\n\nSuccessed!\nPlay time: " << play_time <<" sec\n\n";}
 	return 0;
 }
