@@ -13,6 +13,9 @@ using namespace std;
 #define map_height 21
 #define map_width 42
 
+WINDOW *score_board;
+WINDOW *goal_board;
+
 bool fail = false; // game over, init = false
 int stage = 1;
 // ifstream map_file;
@@ -35,7 +38,7 @@ int gate_timer = 0;
 
 // score
 int get_growth, get_poison, get_gate, max_length = 4;
-int goal_growth = 3, goal_poison = 1, goal_gate = 2, goal_length = 7;
+int goal_growth = 1, goal_poison = 1, goal_gate = 0, goal_length = 5;
 float play_time;
 
 void show_map(int stage)
@@ -105,7 +108,7 @@ bool move()
         cur_x = snake_x[0];
         cur_y = snake_y[0];
         
-        if((map[cur_x][cur_y ] == 1) || (snake_x.size() < 3)) {return true;}
+        if((map[cur_x][cur_y] == 1) || (snake_x.size() < 3)) {return true;}
 
     // 0: up, 1: right, 2: down, 3: left
         if (cur_x == growth_x && cur_y == growth_y){
@@ -149,7 +152,9 @@ bool move()
             if (direction == 2) {return true;}// left
                 else {direction = 0;}
 			    break;
-		}
+            default:
+                break;
+            }
 
         for(int i = 1; i <= snake_y.size(); i++){
             
@@ -173,13 +178,17 @@ void get_item()
     
     srand(time(NULL));
     if(item_timer == 0){
-        poison_x = rand() % 18 + 2;
-        poison_y = rand() % 39 + 2;
-        do{
-            growth_x = rand() % 18 + 2;
-            growth_y = rand() % 39 + 2;
+        do{    
+            poison_x = rand() % 18 + 2;
+            poison_y = rand() % 39 + 2;
+            do{
+                growth_x = rand() % 18 + 2;
+                growth_y = rand() % 39 + 2;
+            }
+            while(poison_x == growth_x && growth_x == poison_x );
         }
-        while(poison_x == growth_x && growth_x == poison_x );
+        while (map[poison_x][poison_y] == 1 || map[poison_x][poison_y] ==2 ||map[growth_x][growth_y] == 1 || map[growth_x][growth_y] == 2); // when value = 2 position
+
         item_timer = 30;
     }
     else {item_timer--;}
@@ -252,7 +261,7 @@ void show_gate()
             while(gate1_x == gate1_y && gate1_x == gate2_y);
         }
         while
-        (map[gate1_x][gate1_y] ==2 || map[gate2_x][gate2_y] ==2); // when value = 2 position
+        (map[gate1_x][gate1_y] == 2 || map[gate2_x][gate2_y] ==2); // when value = 2 position
         gate_timer = 50;
     }
     else {gate_timer--;}
@@ -264,20 +273,68 @@ void show_gate()
     attroff(COLOR_PAIR(8));          
 }
 
-int main()
-{
-    WINDOW *score_board;
-    WINDOW *goal_board;
-    
-    int init_x = 11;
-    int init_y = 11;
-    // init snake place
+void show_score(){
+    init_pair(9, COLOR_BLACK, COLOR_WHITE);
+
+    score_board = newwin(10, 20, 0, 43);
+    goal_board = newwin(10, 20, 11, 43);
+    wbkgd(score_board, COLOR_PAIR(9));
+    wbkgd(goal_board, COLOR_PAIR(9));
+    wattron(score_board, COLOR_PAIR(9));
+    mvwprintw(score_board, 1, 1, "Score board");
+    mvwprintw(score_board, 2, 1, "B: %d / %d", snake_x.size(), max_length);
+    mvwprintw(score_board, 3, 1, "+: %d", get_growth);
+    mvwprintw(score_board, 4, 1, "-: %d", get_poison);
+    mvwprintw(score_board, 5, 1, "G: %d", get_gate);
+    wborder(score_board, '@','@','@','@','@','@','@','@');
+    wattroff(score_board, COLOR_PAIR(9));
+    wrefresh(score_board);
+
+    wattron(goal_board, COLOR_PAIR(9));
+    mvwprintw(goal_board, 1, 1, "Mission");
+    mvwprintw(goal_board, 2, 1, "B: %d", goal_length);
+    if (max_length < goal_length) {wprintw(goal_board, " ( )");} else {wprintw(goal_board, " (V)");}
+    mvwprintw(goal_board, 3, 1, "+: %d", goal_growth);
+    if (get_growth < goal_growth) {wprintw(goal_board, " ( )");} else {wprintw(goal_board, " (V)");}
+    mvwprintw(goal_board, 4, 1, "-: %d", goal_poison);
+    if (get_poison > goal_poison) {wprintw(goal_board, " ( )");} else {wprintw(goal_board, " (V)");}
+    mvwprintw(goal_board, 5, 1, "G: %d", goal_gate);
+    if (get_gate < goal_gate) {wprintw(goal_board, " ( )");} else {wprintw(goal_board, " (V)");}
+    wborder(goal_board, '@','@','@','@','@','@','@','@');
+    wattroff(goal_board, COLOR_PAIR(9));
+    wrefresh(goal_board);
+
+    WINDOW * ck;
+    ck = newwin(10, 20, 21, 43);
+    wattron(ck, COLOR_PAIR(9));
+    mvwprintw(ck, 1, 1, "%d", fail);
+    wattroff(ck, COLOR_PAIR(9));
+    wrefresh(ck);
+
+}
+
+void init(){
+
+    while(snake_x.size() != 0)
+    {
+        snake_x.pop_back();
+        snake_y.pop_back();
+    }
+
+    int init_x = 15;
+    int init_y = 17;
+
     for (int i=0; i<4; i++)
     {    
         snake_x.push_back(init_x + i); 
         snake_y.push_back(init_y);
     }
+    
+    direction =0;
 
+}
+int main()
+{
     initscr();
     resize_term(100, 100);
     start_color();
@@ -286,52 +343,35 @@ int main()
     cbreak();
     keypad(stdscr, TRUE);
     curs_set(0);
+    
 for(; stage< 5; stage++)
-{    
+{       
+    init();
+    show_map(stage);
+	// show_score();
+	 get_growth=0; get_poison= 0; get_gate= 0; max_length= 4; 
 
    while(!fail)
    {
         play_time += 0.1;
         fail = move();
-
-        init_pair(9, COLOR_BLACK, COLOR_WHITE);
-
-        score_board = newwin(10, 20, 0, 43);
-        goal_board = newwin(10, 20, 11, 43);
-        wbkgd(score_board, COLOR_PAIR(9));
-        wbkgd(goal_board, COLOR_PAIR(9));
-        wattron(score_board, COLOR_PAIR(9));
-        mvwprintw(score_board, 1, 1, "Score board");
-        mvwprintw(score_board, 2, 1, "B: %d / %d", snake_x.size(), max_length);
-        mvwprintw(score_board, 3, 1, "+: %d", get_growth);
-        mvwprintw(score_board, 4, 1, "-: %d", get_poison);
-        mvwprintw(score_board, 5, 1, "G: %d", get_gate);
-        wborder(score_board, '@','@','@','@','@','@','@','@');
-        wattroff(score_board, COLOR_PAIR(9));
-        wrefresh(score_board);
-
-        wattron(goal_board, COLOR_PAIR(9));
-        mvwprintw(goal_board, 1, 1, "Mission");
-        mvwprintw(goal_board, 2, 1, "B: %d", goal_length);
-        if (max_length < goal_length) {wprintw(goal_board, " ( )");} else {wprintw(goal_board, " (V)");}
-        mvwprintw(goal_board, 3, 1, "+: %d", goal_growth);
-        if (get_growth < goal_growth) {wprintw(goal_board, " ( )");} else {wprintw(goal_board, " (V)");}
-        mvwprintw(goal_board, 4, 1, "-: %d", goal_poison);
-        if (get_poison > goal_poison) {wprintw(goal_board, " ( )");} else {wprintw(goal_board, " (V)");}
-        mvwprintw(goal_board, 5, 1, "G: %d", goal_gate);
-        if (get_gate < goal_gate) {wprintw(goal_board, " ( )");} else {wprintw(goal_board, " (V)");}
-        wborder(goal_board, '@','@','@','@','@','@','@','@');
-        wattroff(goal_board, COLOR_PAIR(9));
-        wrefresh(goal_board);
-
+        show_score();
         if ((max_length >= goal_length) && (get_growth >= goal_growth) && (get_poison <= goal_poison) && (get_gate >= goal_gate) ) {break;}
     }
-    // need initialize environment
+
+
+    if(fail == 1)
+        break;
+        
+
+
+    getch();
 }
+    sleep(4);
     clear();
     getch();
+    
 	endwin();
-
     if (fail){cout << "\n\nFailed!\nPlay time: "<< play_time <<" sec\n\n";}
     else{cout << "\n\nSuccessed!\nPlay time: "<< play_time <<" sec\n\n";}
 	return 0;
