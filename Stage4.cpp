@@ -272,6 +272,7 @@ int main()
 {
     int init_x = 11;
     int init_y = 11;
+    
     // init snake place
     for (int i=0; i<4; i++)
     {    

@@ -199,7 +199,7 @@ void get_item()
         }
         while (map[poison_x][poison_y] == 1 || map[poison_x][poison_y] ==2 ||map[growth_x][growth_y] == 1 || map[growth_x][growth_y] == 2); // when value = 2 position
 
-        item_timer = 30;
+        item_timer = 50;
     }
     else {item_timer--;}
 
