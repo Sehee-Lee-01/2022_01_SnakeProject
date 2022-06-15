@@ -166,7 +166,7 @@ bool move()
 
             cur_y = y; cur_x = x;
         }
-        usleep(tick*2);
+        usleep(tick);
 
     return false;
 }
