@@ -1,7 +1,7 @@
 #include<ncurses.h>
 #include <unistd.h>
-#include<fstream>
-#include<iostream>
+#include <fstream>
+#include <iostream>
 #include <vector>
 #include <time.h>
 

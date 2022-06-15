@@ -399,3 +399,15 @@ while(stage <= 5)
     else{cout << "\n\nSuccessed!\nPlay time: "<< play_time <<" sec\n\n";}
 	return 0;
 }
+
+
+// while(1)
+	// {	
+	// 	init_x = rand()%10+ 1;
+	// 	init_y = rand()%37 +1;
+	// 	if(map[init_y][init_y] == 1 || map[init_y][init_y] == 2)
+	// 			continue;
+	// 	else
+	// 		break;
+	// }
+	

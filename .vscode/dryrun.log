@@ -1,4 +1,4 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/seheelee/SnakeProject-2022-01'
 g++ -std=c++11 -o stg1 Stage1.cpp -lncursesw
 ./stg1

@@ -1,7 +1,7 @@
-#include<ncurses.h>
+#include <ncurses.h>
 #include <unistd.h>
-#include<fstream>
-#include<iostream>
+#include <fstream>
+#include <iostream>
 #include <vector>
 #include <time.h>
 
@@ -29,7 +29,7 @@ void get_item();
 void in_gate();
 void show_gate();
 
-//item
+// item
 int poison_x, poison_y, growth_x, growth_y;
 int gate1_x, gate1_y, gate2_x, gate2_y;
 
@@ -171,6 +171,16 @@ bool move()
     return false;
 }
 
+void show_item()
+{
+    attron(COLOR_PAIR(6));
+    mvprintw(poison_x, poison_y," ");
+    attroff(COLOR_PAIR(6));    
+    attron(COLOR_PAIR(7));
+    mvprintw(growth_x, growth_y," ");
+    attroff(COLOR_PAIR(7));  
+}
+
 void get_item()
 {   
     init_pair(6, COLOR_RED, COLOR_RED); // poision
@@ -194,12 +204,7 @@ void get_item()
     else {item_timer--;}
 
     // show Item
-        attron(COLOR_PAIR(6));
-        mvprintw(poison_x, poison_y," ");
-        attroff(COLOR_PAIR(6));    
-        attron(COLOR_PAIR(7));
-        mvprintw(growth_x, growth_y," ");
-        attroff(COLOR_PAIR(7));  
+     show_item();
 }
 
 
