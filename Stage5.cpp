@@ -23,7 +23,7 @@ int map[map_height][map_width]; // Map
 //snaked
 vector<int> snake_x;
 vector<int> snake_y; 
-int direction = 0; // 0: up, 1: right, 2: down, 3: left
+int direction = 0; // 0: up, 1: rig05ht, 2: down, 3: left
 int cur_x; int cur_y;
 void get_item();
 void in_gate();
@@ -199,7 +199,7 @@ void get_item()
         }
         while (map[poison_x][poison_y] == 1 || map[poison_x][poison_y] ==2 ||map[growth_x][growth_y] == 1 || map[growth_x][growth_y] == 2); // when value = 2 position
 
-        item_timer = 50;
+        item_timer = 30;
     }
     else {item_timer--;}
 
@@ -309,12 +309,6 @@ void show_score(){
     wattroff(goal_board, COLOR_PAIR(9));
     wrefresh(goal_board);
 
-    WINDOW * ck;
-    ck = newwin(10, 20, 21, 43);
-    wattron(ck, COLOR_PAIR(9));
-    mvwprintw(ck, 1, 1, "%d", fail);
-    wattroff(ck, COLOR_PAIR(9));
-    wrefresh(ck);
 
 }
 
@@ -366,6 +360,9 @@ void init(){
     }
 
 }
+
+
+
 int main()
 {
     initscr();
