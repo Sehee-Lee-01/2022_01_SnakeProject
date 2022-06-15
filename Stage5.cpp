@@ -20,7 +20,7 @@ bool fail = false; // game over, init = false
 int stage = 1;
 // ifstream map_file;
 int map[map_height][map_width]; // Map
-//snake
+//snaked
 vector<int> snake_x;
 vector<int> snake_y; 
 int direction = 0; // 0: up, 1: right, 2: down, 3: left
@@ -337,6 +337,34 @@ void init(){
     
     direction =0;
 
+    get_growth=0; get_poison= 0; get_gate= 0; max_length= 4; 
+    switch(stage){
+        case 1:
+            goal_growth = 2; 
+            goal_poison = 0; 
+            goal_gate = 2; 
+            goal_length = 6;
+            break;
+        case 2:
+            goal_growth = 3; 
+            goal_poison = 0; 
+            goal_gate = 3; 
+            goal_length = 7;
+            break;
+        case 3:
+            goal_growth = 4; 
+            goal_poison = 1; 
+            goal_gate = 4; 
+            goal_length = 8;
+            break;
+        case 4:
+            goal_growth = 7; 
+            goal_poison = 2; 
+            goal_gate = 6; 
+            goal_length = 9;
+            break;
+    }
+
 }
 int main()
 {
@@ -354,7 +382,6 @@ for(; stage< 5; stage++)
     init();
     show_map(stage);
 	// show_score();
-	 get_growth=0; get_poison= 0; get_gate= 0; max_length= 4; 
 
    while(!fail)
    {
