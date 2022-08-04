@@ -1,3 +1,3 @@
-# 2022_01_SnakeProject
+# 2022_1_SnakeProject
 
 for Snake Game
